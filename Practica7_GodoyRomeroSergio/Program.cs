@@ -16,16 +16,16 @@ namespace Practica7_GodoyRomeroSergio
 
             char[,] mapa = new char[10, 10] // Mapa predefinido
             {
-                { 'P', ' ', ' ', ' ', ' ', 'X', ' ', ' ', 'M', ' ' },
-                { ' ', ' ', 'M', ' ', 'X', ' ', ' ', ' ', ' ', ' ' },
+                { 'P', ' ', ' ', 'X', ' ', 'X', ' ', 'X', 'M', ' ' },
+                { ' ', ' ', 'M', ' ', 'X', ' ', ' ', ' ', ' ', 'X' },
                 { ' ', 'X', ' ', ' ', ' ', ' ', 'M', ' ', ' ', ' ' },
-                { ' ', ' ', ' ', 'X', ' ', 'M', ' ', ' ', ' ', ' ' },
-                { 'M', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ' },
+                { ' ', ' ', ' ', 'X', ' ', 'M', ' ', 'M', ' ', ' ' },
+                { 'M', ' ', 'M', ' ', 'X', ' ', 'X', ' ', ' ', 'M' },
                 { ' ', 'M', ' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ' },
-                { ' ', ' ', 'X', ' ', ' ', 'M', ' ', 'M', ' ', ' ' },
-                { ' ', 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                { ' ', ' ', 'M', ' ', 'X', ' ', ' ', 'M', ' ', ' ' },
-                { 'M', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ' }
+                { ' ', ' ', ' ', 'X', ' ', 'M', ' ', 'M', ' ', 'X' },
+                { 'X', 'X', ' ', 'X', ' ', ' ', 'M', ' ', ' ', ' ' },
+                { ' ', ' ', 'M', ' ', 'X', ' ', ' ', 'M', ' ', 'X' },
+                { 'M', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', 'X' }
             };
 
             int jugadorX = 0, jugadorY = 0; // Posición inicial del jugador
@@ -53,16 +53,19 @@ namespace Practica7_GodoyRomeroSergio
                 {
                     if (jugadorX > 0) jugadorX--; // Moverse hacia arriba solo si no está en el límite superior
                 }
+
                 // Si el jugador se mueve hacia la izquierda
                 else if (tecla.Key == ConsoleKey.A) // Izquierda
                 {
                     if (jugadorY > 0) jugadorY--; // Moverse hacia la izquierda solo si no está en el límite izquierdo
                 }
+
                 // Si el jugador se mueve hacia abajo
                 else if (tecla.Key == ConsoleKey.S) // Abajo
                 {
                     if (jugadorX < tamañoMapa - 1) jugadorX++; // Moverse hacia abajo solo si no está en el límite inferior
                 }
+
                 // Si el jugador se mueve hacia la derecha
                 else if (tecla.Key == ConsoleKey.D) // Derecha
                 {
