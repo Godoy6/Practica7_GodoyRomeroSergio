@@ -28,65 +28,71 @@ namespace Practica7_GodoyRomeroSergio
                 { 'M', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ' }
             };
 
-            int jugadorX = 0, jugadorY = 0; // Posición del jugador
+            int jugadorX = 0, jugadorY = 0; // Posición inicial del jugador
 
-            while (true) // Bucle del juego
+            while (true) // Bucle de juego
             {
-                Console.Clear(); // Mostrar el mapa
+                Console.Clear(); // Limpia la pantalla y muestra el mapa actualizado
                 for (int i = 0; i < tamañoMapa; i++)
                 {
                     for (int j = 0; j < tamañoMapa; j++)
                     {
-                        Console.Write(mapa[i, j] + " ");
+                        Console.Write(mapa[i, j] + " "); // Imprime cada celda del mapa
                     }
-                    Console.WriteLine();
+                    Console.WriteLine(); // Nueva línea después de cada fila del mapa
                 }
 
-                ConsoleKeyInfo tecla = Console.ReadKey(true); // Leer el movimiento del jugador
+                ConsoleKeyInfo tecla = Console.ReadKey(true); // Lee la tecla pulsada por el jugador
+                                                              // - La variable llamada "tecla" de tipo "ConsoleKeyInfo" almacenará
+                                                              //   la informacion de la tecla que el usuario presione
 
-                mapa[jugadorX, jugadorY] = VACIO; // Para no ir dejando hueyas ("P")
+                mapa[jugadorX, jugadorY] = VACIO; // Borra la posición anterior del jugador
 
-                // Comprobar si el jugador se mueve
+                // Si el jugador se mueve hacia arriba
                 if (tecla.Key == ConsoleKey.W) // Arriba
                 {
-                    if (jugadorX > 0) jugadorX--;
+                    if (jugadorX > 0) jugadorX--; // Moverse hacia arriba solo si no está en el límite superior
                 }
+                // Si el jugador se mueve hacia la izquierda
                 else if (tecla.Key == ConsoleKey.A) // Izquierda
                 {
-                    if (jugadorY > 0) jugadorY--;
+                    if (jugadorY > 0) jugadorY--; // Moverse hacia la izquierda solo si no está en el límite izquierdo
                 }
+                // Si el jugador se mueve hacia abajo
                 else if (tecla.Key == ConsoleKey.S) // Abajo
                 {
-                    if (jugadorX < tamañoMapa - 1) jugadorX++;
+                    if (jugadorX < tamañoMapa - 1) jugadorX++; // Moverse hacia abajo solo si no está en el límite inferior
                 }
+                // Si el jugador se mueve hacia la derecha
                 else if (tecla.Key == ConsoleKey.D) // Derecha
                 {
-                    if (jugadorY < tamañoMapa - 1) jugadorY++;
+                    if (jugadorY < tamañoMapa - 1) jugadorY++; // Moverse hacia la derecha solo si no está en el límite derecho
                 }
                 else
                 {
-                    Console.WriteLine("Tecla inválida. El juego termina.");  // Si la tecla no es W, A, S, o D, el juego termina
+                    Console.WriteLine("¿Seguro que has presionado la tecla que era? (W/A/S/D)");  // Si la tecla no es W, A, S, o D, el juego termina
                     break;
                 }
 
-                if (mapa[jugadorX, jugadorY] == MINA) // Verificar si el jugador pisó una mina
+                if (mapa[jugadorX, jugadorY] == MINA) // Verifica si el jugador ha pisado una mina
                 {
-                    Console.Clear();
-                    Console.WriteLine("¡Has pisado una mina! El juego ha terminado.");
+                    Console.Clear(); // Limpia la pantalla y muestra el mapa actualizado
+                    Console.WriteLine("Has pisado una mina, te toca empezar de nuevo macho"); // Termina el juego si el jugador pisa una mina
                     break;
                 }
 
-                if (mapa[jugadorX, jugadorY] == OBSTACULO) // Verificar si el jugador chocó con un obstáculo
+                if (mapa[jugadorX, jugadorY] == OBSTACULO) // Verifica si el jugador ha chocado con un obstáculo
                 {
                     Console.Clear();
-                    Console.WriteLine("¡Has chocado con un obstáculo! Vuelves al inicio.");
-                    jugadorX = 0;
+
+                    // Vuelve al inicio (0, 0)
+                    jugadorX = 0; 
                     jugadorY = 0;
-                    mapa[0, 0] = JUGADOR;
+                    mapa[0, 0] = JUGADOR; // Coloca al jugador en la posición inicial
                 }
                 else
                 {
-                    mapa[jugadorX, jugadorY] = JUGADOR; // Actualizar la posición del jugador en el mapa
+                    mapa[jugadorX, jugadorY] = JUGADOR; // Actualiza la posición del jugador en el mapa
                 }
             }
         }
